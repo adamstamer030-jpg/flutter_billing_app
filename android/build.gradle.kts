@@ -5,16 +5,15 @@ allprojects {
     }
 }
 
-val newBuildDir: Directory =
-    rootProject.layout.buildDirectory
-        .dir("../../build")
-        .get()
-rootProject.layout.buildDirectory.value(newBuildDir)
+// Resetting custom build directory to use Gradle defaults. Having a custom build
+// directory (pointing outside the project) breaks Flutter/CI artifact discovery
+// and can cause "Gradle build failed to produce an .apk file" errors.
+// See: https://github.com/flutter/flutter/issues/...
 
-subprojects {
-    val newSubprojectBuildDir: Directory = newBuildDir.dir(project.name)
-    project.layout.buildDirectory.value(newSubprojectBuildDir)
-}
+// The previous implementation redirected the build output to ../../build which
+// prevents `flutter` tooling from locating generated APK/AAB artifacts. Use the
+// default Gradle build directory instead by removing the custom buildDir logic.
+
 subprojects {
     project.evaluationDependsOn(":app")
 }
