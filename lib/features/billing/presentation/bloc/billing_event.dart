@@ -1,0 +1,89 @@
+part of 'billing_bloc.dart';
+
+abstract class BillingEvent extends Equatable {
+  const BillingEvent();
+  @override
+  List<Object> get props => [];
+}
+
+class ScanBarcodeEvent extends BillingEvent {
+  final String barcode;
+  const ScanBarcodeEvent(this.barcode);
+  @override
+  List<Object> get props => [barcode];
+}
+
+class AddProductToCartEvent extends BillingEvent {
+  final Product product;
+  const AddProductToCartEvent(this.product);
+  @override
+  List<Object> get props => [product];
+}
+
+class RemoveProductFromCartEvent extends BillingEvent {
+  final String productId;
+  const RemoveProductFromCartEvent(this.productId);
+  @override
+  List<Object> get props => [productId];
+}
+
+class UpdateQuantityEvent extends BillingEvent {
+  final String productId;
+  final int quantity;
+  const UpdateQuantityEvent(this.productId, this.quantity);
+  @override
+  List<Object> get props => [productId, quantity];
+}
+
+class ClearCartEvent extends BillingEvent {}
+
+class ApplyDiscountEvent extends BillingEvent {
+  final double discount;
+  final bool isPercentage;
+  const ApplyDiscountEvent(this.discount, {this.isPercentage = false});
+  @override
+  List<Object> get props => [discount, isPercentage];
+}
+
+class SetPaymentMethodEvent extends BillingEvent {
+  final String method;
+  const SetPaymentMethodEvent(this.method);
+  @override
+  List<Object> get props => [method];
+}
+
+class ConfirmSaleEvent extends BillingEvent {
+  final String shopName;
+  final String address1;
+  final String address2;
+  final String phone;
+  final String footer;
+  const ConfirmSaleEvent({
+    required this.shopName,
+    required this.address1,
+    required this.address2,
+    required this.phone,
+    required this.footer,
+  });
+  @override
+  List<Object> get props => [shopName, address1, address2, phone, footer];
+}
+
+class PrintReceiptEvent extends BillingEvent {
+  final String shopName;
+  final String address1;
+  final String address2;
+  final String phone;
+  final String footer;
+
+  const PrintReceiptEvent({
+    required this.shopName,
+    required this.address1,
+    required this.address2,
+    required this.phone,
+    required this.footer,
+  });
+
+  @override
+  List<Object> get props => [shopName, address1, address2, phone, footer];
+}
