@@ -1,0 +1,9 @@
+# This file is used to override default values used by the Gradle build system.
+# For more details on how to customize your build, read the
+# https://developer.android.com/studio/build/gradle-plugin-user-guide documentation.
+
+sdk.dir=/Users/shared/flutter/bin/cache/android-sdk
+flutter.sdk=/Users/shared/flutter
+flutter.buildMode=release
+flutter.minSdkVersion=24
+flutter.targetSdkVersion=36
