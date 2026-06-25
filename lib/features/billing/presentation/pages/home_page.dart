@@ -426,8 +426,8 @@ class _HomePageState extends State<HomePage> {
           Text(AppLocalizations.of(context)!.listEmpty,
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
           const SizedBox(height: 8),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 40),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 40),
             child: Text(
               AppLocalizations.of(context)!.emptyDescription,
               textAlign: TextAlign.center,
